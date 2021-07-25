@@ -230,6 +230,10 @@ margin-left: 0px;
 display: flex;
 justify-content: space-between;
 }
+.korzItem{
+    display: flex;
+    flex-direction: column;
+}
 .sod{
     display: flex;
     flex-direction: column;
@@ -280,7 +284,12 @@ justify-content: space-between;
     color: #f16d7f;
 }
 .menu_korz:hover .korz_sod{
+    display: block;
+    flex-direction: column;
+}
+.mainkorz{
     display: flex;
+    flex-direction: column;
 }
 .korz{
     width: 32px;
