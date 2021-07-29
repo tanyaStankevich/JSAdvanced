@@ -7,4 +7,9 @@ Vue.component('goods-list', {
             this.$emit('add', id)
         }
     }
+    // methods: {
+    //     addHandler(id) {
+    //         this.$emit('add', id)
+    //     }
+    // }
 })
