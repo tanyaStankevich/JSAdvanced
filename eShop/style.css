@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.cartBut {
+  width: 100px;
+  height: 30px;
+  margin-left: 20px;
+}
+.goodsItem {
+  border: 1px solid black;
+  width: 80px;
+  height: 100px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.goodsH {
+  text-align: center;
+}
+.goodsP {
+  text-align: center;
+}
+.good-list {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>eShop</title>
+    <link href="./style.css" rel="stylesheet">
     
+
 </head>
 <body>
-    
-    <header>
-        <button type="button" class="cartBut"></button>
-    </header>
-    <main>
-        <div class="good-list"></div>
-        <script src="./script.js"></script>
-    </main>
+    <div id="app">
+        <header class="container">
+            <search-comp v-on:click='filterGoods'></search-comp>
+            <!-- <div class="finishCost">
+            <button type="button" class="cartBut">Корзина</button></div> -->
+            <cart-comp v-on:click='repaintPage'></cart-comp>
+        </header>
+        <main class="container">
+            <goods-list v-bind:goods='filteredGoods'></goods-list>
+           <!-- // <div class="good-list" v-if='goods.length!=0'></div> -->
+                <!-- <div class='goodsItem' v-for='good in filteredGoods'>
+                <p class='goodsP'>{{good.id_product}}</p>
+                <h3 class='goodsH'>{{good.product_name}}</h3>
+                <p class='goodsP'>{{good.price}}</p>
+            </div> -->
+            <!-- </div> -->
+            <error-comp v-bind:statusServer='statusServer'></error-comp>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./script.js"></script>
+    <script src="./goods-item.js"></script>
+    <script src="./goods-list.js"></script>
+    <script src="./search.js"></script>
+    <script src="./cart.js"></script>
+    <script src="./error.js"></script>
     
 </body>
 
