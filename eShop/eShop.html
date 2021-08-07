@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eShop</title>
+    <link href="./style.css" rel="stylesheet">
+    
+
+</head>
+<body>
+    <div id="app">
+        <header class="container">
+            <search-comp v-on:click='filterGoods'></search-comp>
+       
+            <cart-comp v-on:click='repaintPage'></cart-comp>
+        </header>
+        <main class="container">
+            <goods-list v-bind:goods='filteredGoods'></goods-list>
+            <error-comp v-bind:statusServer='statusServer'></error-comp>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./script.js"></script>
+    <script src="./goods-item.js"></script>
+    <script src="./goods-list.js"></script>
+    <script src="./search.js"></script>
+    <script src="./cart.js"></script>
+    <script src="./error.js"></script>
+    
+</body>
+
+</html>

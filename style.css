@@ -278,6 +278,16 @@ details[open] > summary.but_header1::after {
           justify-content: space-between;
 }
 
+.korzItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .sod {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -339,9 +349,21 @@ details[open] > summary.but_header1::after {
 }
 
 .menu_korz:hover .korz_sod {
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.mainkorz {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .korz {

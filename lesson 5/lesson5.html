@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eShop</title>
+    <script src="https:/cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    
+</head>
+
+<body>
+   
+    <div id="app">
+        <header>
+            <input class="search" type="text" v-model='searchLine'>
+            <button class="buttonSearch" type="button" v-on:click='filteredGoods'>
+                Искать</button>
+            <button class="buttonCart" type="button">Корзина</button>
+
+        </header>
+
+        <main>
+            
+        <div class="korz_sod">
+            <div class=".mainkorz"></div>
+            
+               
+            <div class="goodList">
+                <div class="goodItem" v-for='good in filterGoods' v-if='filterGoods.lehgth!=0'>
+                    <h3>{{good.product_name}}</h3>
+                    <p>{{good.price}}</p>
+                </div>
+
+            </div>
+            <div class="goodList" v-if='filterGoods.lehgth==0'>
+                <p>Нет данных</p>
+            </div>
+        </div>
+        </main>
+    </div>
+   
+    <script src="./lesson5.js" defer></script>
+</body>
+
+</html>

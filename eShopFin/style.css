@@ -1,0 +1,15 @@
+.goods-item {
+  border: 1px solid black;
+  width: 100px;
+  height: 200px;
+  margin: 20px;
+  text-align: center;
+}
+.good-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.good-cart {
+  display: flex;
+  flex-wrap: wrap;
+}
