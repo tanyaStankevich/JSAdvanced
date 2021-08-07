@@ -15,6 +15,8 @@
 // }
 // const API_URL='https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
+const { method } = require("lodash");
+
 // class GoodItem{
 //     constructor(id_product, product_name, price) {
 //         this.id_product = id_product;
@@ -95,20 +97,22 @@
 //     list.finishCost();
 // });
 const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
-const statusServer = '';
+
 const app = new Vue({
     el: '#app',
-    data: {
-        goods: [],
-        filteredGoods: [],
-        cart:[],
-        searchInput: '',
-        isVisibleCart: false
+    data(): {
+        return {
+            goods: [],
+            filteredGoods: [],
+            cart: [],
+            //searchInput: '',
+            //isVisibleCart: false
+        }
     },
     methods: {
         
         makeGetRequest(url, callback) {
-            const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+            //const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
             var xhr;
             if (window.XMLHttpRequest) {
                 xhr = new XMLHttpRequest();
@@ -122,41 +126,74 @@ const app = new Vue({
             
             }
             if (xhr.status == '404' & xhr.status == '500') {
-                statusServer = 'Сервер не доступен';
-                return statusServer;
+                let statusServer = 'Сервер не доступен';
+               return statusServer;
             }
 
-            xhr.open('GET', url, true);
+            xhr.open('GET', './catalog.json', true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
             xhr.send();
         },
+
+        makePOSTRequest(url, callback) {
+            
+            var xhr;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                callback(xhr.responseText);
+            }
+            
+            }
+            if (xhr.status == '404' & xhr.status == '500') {
+                const statusServer = 'Сервер не доступен';
+               callback(statusServer);
+            }
+
+            xhr.open('POST', './cart.json', true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+            xhr.send();
+        },
+
         filterGoods() {
             const regexp = new RegExp(searchInput, 'i');
             this.filteredGoods = this.goods.filter(good =>
             regexp.test(good.product_name));
         
         },
-       addHandler(id) {
-            const good = this.goods.find(good => good.id_product === id_product)
+        addHandler(good) {
             this.cart.push(good);
-
-            console.log(this.cart)
+            fetch('/cart.json',
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(good)
+            )
+           
         },
-       filterGoods(value) {
-        const regexp = new RegExp(value, 'i');
-        this.filteredGoods = this.goods.filter(good =>
-            regexp.test(good.product_name));
-        this.renderGoodsList();
+    //    filterGoods(value) {
+    //     const regexp = new RegExp(value, 'i');
+    //     this.filteredGoods = this.goods.filter(good =>
+    //         regexp.test(good.product_name));
+    //     this.renderGoodsList();
 
-        },
+    //     },
         repaintPage() {
            //тут должен быть код изменения страницы с основной на корзину
        }
     },
      mounted() {
-        this.makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
-            this.goods = goods;
-            this.filteredGoods = goods;
+        this.makeGETRequest('/catalogData', (goods) => {
+            this.goods = JSON.parse(goods);
+            this.filteredGoods = goodsJSON.parse(goods);
             
+        }),
+        this.makeGETRequest('/addToCart', (cart) => {
+            this.cart = JSON.parse(cart);
         })
     },
     
